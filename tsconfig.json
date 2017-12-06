@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "lib": [
+          "es2015",
+          "es2015.promise"
+         ],
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "outDir": "lib",
+        "allowJs": true
+    }
+}
