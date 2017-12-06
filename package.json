@@ -1,17 +1,17 @@
 {
   "name": "kittens",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "cats inspired types for typescript",
+  "main": "lib/index.js",
+  "typings": "lib/index",
   "scripts": {
-    "compile": "tsc",
-    "pretest": "tsc",
-    "test": "mocha lib/**/*.spec.js"
+    "pretest": "tsc --sourceMap",
+    "test": "mocha lib/**/*.spec.js",
+    "prepublish": "tsc --declaration"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/aws-lambda": "0.0.22",
     "@types/node": "^7.0.48",
     "@types/mocha": "^2.2.41",
     "@types/chai": "^3.5.1",
