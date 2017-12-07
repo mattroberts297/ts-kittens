@@ -1,4 +1,5 @@
 export class None<A> {
+  readonly kind: "none" = "none";
   readonly isDefined: Boolean = false;
 
   constructor() { }
@@ -8,16 +9,13 @@ export class None<A> {
   }
 
   orElse(defaultValue: A): A {
-    return this.withDefault(defaultValue);
-  }
-
-  withDefault(defaultValue: A): A {
     return defaultValue;
   }
 }
 
 export class Some<A> {
-  readonly isDefined: Boolean = true
+  readonly kind: "some" = "some";
+  readonly isDefined: Boolean = true;
   readonly value: A;
 
   constructor(value: A) {

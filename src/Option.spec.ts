@@ -2,6 +2,13 @@ import { Option } from "./option";
 import "mocha";
 import { expect } from "chai";
 
+export function print<A>(o: Option<A>) {
+  switch (o.kind) {
+    case "some": return `Some(${o.value})`;
+    case "none": return "None";
+  }
+}
+
 describe("option", () => {
   it("should be defined when passed a string", () => {
     expect(Option("12345").isDefined).to.be.true;
@@ -65,5 +72,11 @@ describe("option", () => {
     const orElse = '456';
     const output = orElse;
     expect(Option(input).orElse(orElse)).to.equal(output);
+  });
+
+  it("should permit exhaustive checking", () => {
+    const input = Option('foo');
+    const output = 'Some(foo)';
+    expect(print(input)).to.equal(output);
   });
 });
