@@ -1,15 +1,19 @@
 {
-  "name": "kittens",
-  "version": "0.1.0",
+  "name": "ts-kittens",
+  "version": "0.1.4",
   "description": "cats inspired types for typescript",
   "main": "lib/index.js",
   "typings": "lib/index",
   "scripts": {
-    "pretest": "tsc --sourceMap",
+    "pretest": "tsc",
     "test": "mocha lib/**/*.spec.js",
     "prepublish": "tsc --declaration"
   },
-  "author": "",
+  "author": {
+    "name" : "Matt Roberts",
+    "email" : "mail@mattroberts.io",
+    "url" : "https://mattroberts.io"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^7.0.48",

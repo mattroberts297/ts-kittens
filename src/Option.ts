@@ -3,8 +3,8 @@ export class None<A> {
 
   constructor() { }
 
-  then<B>(callback: (a: A) => B): Option<B> {
-    return new None<B>();
+  then<B>(callback: (a: A) => B | null | undefined): Option<B> {
+    return Option<B>(null);
   }
 
   orElse(defaultValue: A): A {
@@ -24,15 +24,11 @@ export class Some<A> {
     this.value = value;
   }
 
-  then<B>(callback: (a: A) => B): Option<B> {
-    return Option(callback(this.value));
+  then<B>(f: (a: A) => B | null | undefined): Option<B> {
+    return Option(f(this.value));
   }
 
-  orElse(defaultValue: A): A {
-    return this.withDefault(defaultValue);
-  }
-
-  withDefault(defaultValue: A): A {
+  orElse(orElse: A): A {
     return this.value;
   }
 }

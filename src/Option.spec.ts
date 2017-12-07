@@ -25,6 +25,15 @@ describe("option", () => {
     expect(Option(undefined).then(a => 12345).isDefined).to.be.false
   });
 
+  it("should be thenable when defined, then undefined", () => {
+    const inputA: string | undefined = true ? 'foo' : undefined;
+    const inputB: string | undefined = true ? undefined : 'foo';
+    const optionA = Option(inputA)
+    const optionB = optionA.then(a => inputB);
+    expect(optionA.isDefined).to.be.true
+    expect(optionB.isDefined).to.be.false
+  });
+
   it("should not return the value passed toOrElse when defined", () => {
     const input = '123';
     const orElse = '456';
