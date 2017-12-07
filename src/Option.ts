@@ -3,7 +3,7 @@ export class None<A> {
 
   constructor() { }
 
-  then<B>(callback: (a: A) => B | null | undefined): Option<B> {
+  then<B>(callback: (a: A) => B | null | undefined | Option<B>): Option<B> {
     return Option<B>(null);
   }
 
@@ -24,7 +24,7 @@ export class Some<A> {
     this.value = value;
   }
 
-  then<B>(f: (a: A) => B | null | undefined): Option<B> {
+  then<B>(f: (a: A) => B | null | undefined | Option<B>): Option<B> {
     return Option(f(this.value));
   }
 
@@ -35,9 +35,11 @@ export class Some<A> {
 
 export type Option<A> = None<A> | Some<A>
 
-export function Option<A>(a: A | null | undefined): Option<A> {
+export function Option<A>(a: A | null | undefined | Option<A>): Option<A> {
   if (a == null || a == undefined) {
     return new None<A>();
+  } else if (a instanceof Some || a instanceof None) {
+    return a;
   } else {
     return new Some<A>(a);
   }
