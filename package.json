@@ -1,6 +1,6 @@
 {
   "name": "ts-kittens",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "cats inspired types for typescript",
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -18,7 +18,7 @@
     "email" : "mail@mattroberts.io",
     "url" : "https://mattroberts.io"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^7.0.48",
     "@types/mocha": "^2.2.41",
