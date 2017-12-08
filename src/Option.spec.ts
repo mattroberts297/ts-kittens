@@ -1,11 +1,11 @@
-import { Option } from "./option";
+import { Option, OptionKind } from "./option";
 import "mocha";
 import { expect } from "chai";
 
-export function print<A>(o: Option<A>) {
+export function print<A>(o: Option<A>): string {
   switch (o.kind) {
-    case "some": return `Some(${o.value})`;
-    case "none": return "None";
+    case OptionKind.Some: return `Some(${o.value})`;
+    case OptionKind.None: return "None";
   }
 }
 

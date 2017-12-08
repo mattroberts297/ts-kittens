@@ -1,10 +1,10 @@
 export class None<A> {
-  readonly kind: "none" = "none";
+  readonly kind: OptionKind.None = OptionKind.None;
   readonly isDefined: Boolean = false;
 
   constructor() { }
 
-  then<B>(callback: (a: A) => B | Option<B> | null | undefined): Option<B> {
+  then<B>(callback: (a: A) => B | Option<B> | void | null | undefined): Option<B> {
     return Option<B>(null);
   }
 
@@ -14,7 +14,7 @@ export class None<A> {
 }
 
 export class Some<A> {
-  readonly kind: "some" = "some";
+  readonly kind: OptionKind.Some = OptionKind.Some;
   readonly isDefined: Boolean = true;
   readonly value: A;
 
@@ -22,7 +22,7 @@ export class Some<A> {
     this.value = value;
   }
 
-  then<B>(f: (a: A) => B | Option<B> | null | undefined): Option<B> {
+  then<B>(f: (a: A) => B | Option<B> | void | null | undefined): Option<B> {
     return Option(f(this.value));
   }
 
@@ -31,9 +31,14 @@ export class Some<A> {
   }
 }
 
+export enum OptionKind {
+  None,
+  Some
+}
+
 export type Option<A> = None<A> | Some<A>
 
-export function Option<A>(a: A | Option<A> | null | undefined): Option<A> {
+export function Option<A>(a: A | Option<A> | void | null | undefined): Option<A> {
   if (a == null || a == undefined) {
     return new None<A>();
   } else if (a instanceof Some || a instanceof None) {
