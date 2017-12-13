@@ -1,6 +1,4 @@
-import { HigherKindedType } from "./higherkindedtype";
-
-export class None<A> implements HigherKindedType<OptionKind.None, A> {
+export class None<A> {
   readonly kind: OptionKind.None = OptionKind.None;
   readonly isDefined: Boolean = false;
 
@@ -15,7 +13,7 @@ export class None<A> implements HigherKindedType<OptionKind.None, A> {
   }
 }
 
-export class Some<A> implements HigherKindedType<OptionKind.Some, A> {
+export class Some<A> {
   readonly kind: OptionKind.Some = OptionKind.Some;
   readonly isDefined: Boolean = true;
   readonly value: A;

@@ -1,6 +1,4 @@
-import { HigherKindedType } from "./higherkindedtype";
-
-export class Failure<A> implements HigherKindedType<TryKind.Failure, A> {
+export class Failure<A> {
   readonly kind: TryKind.Failure = TryKind.Failure;
   readonly isDefined: Boolean = false;
   readonly error: Error;
@@ -18,7 +16,7 @@ export class Failure<A> implements HigherKindedType<TryKind.Failure, A> {
   }
 }
 
-export class Success<A> implements HigherKindedType<TryKind.Success, A> {
+export class Success<A> {
   readonly kind: TryKind.Success = TryKind.Success;
   readonly isDefined: Boolean = true;
   readonly value: A;
