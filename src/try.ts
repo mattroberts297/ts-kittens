@@ -11,6 +11,10 @@ export class Failure<A> {
     return new Failure<B>(this.error);
   }
 
+  fold<B>(af: (a: A) => B, ef: (b: Error) => B): B {
+    return ef(this.error);
+  }
+
   orElse(defaultValue: A): A {
     return defaultValue;
   }
@@ -27,6 +31,10 @@ export class Success<A> {
 
   then<B>(f: (a: A) => B | Try<B>): Try<B> {
     return Try(() => f(this.value));
+  }
+
+  fold<B>(af: (a: A) => B, ef: (b: Error) => B): B {
+    return af(this.value);
   }
 
   orElse(orElse: A): A {
